@@ -55,7 +55,7 @@ Monitor.prototype.watch = function (queue) {
  * @returns {Promise}
  */
 
-Monitor.prototype.info = function (batchId, cb) {
+Monitor.prototype.get = function (batchId, cb) {
   var monitor = this;
   var totalKey = this._formatKey(batchId, 'total');
   var processedKey = this._formatKey(batchId, 'processed');
@@ -116,6 +116,7 @@ Monitor.prototype._formatKey = function (batchId, type) {
  * Create the redis client.
  *
  * @param {object} options Options
+ * @returns {RedisClient}
  */
 
 Monitor.prototype._createRedisClient = function _createRedisClient(options) {

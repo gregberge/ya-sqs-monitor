@@ -14,7 +14,7 @@ describe('SQS monitor', function () {
     monitor.redis.flushdb(done);
   });
 
-  describe('#info', function () {
+  describe('#get', function () {
     beforeEach(function (done) {
       monitor.redis.multi()
       .set('sqsmon:total:info-batch', 100)
@@ -23,7 +23,7 @@ describe('SQS monitor', function () {
     });
 
     it('should return information on a batch', function () {
-      return monitor.info('info-batch')
+      return monitor.get('info-batch')
       .then(function (res) {
         expect(res).to.have.property('total', 100);
         expect(res).to.have.property('processed', 40);
@@ -63,11 +63,11 @@ describe('SQS monitor', function () {
         });
       })
       .then(function () {
-        return monitor.info('sqs-mon-test');
+        return monitor.get('sqs-mon-test');
       })
       .then(function (info) {
         expect(info.total).to.equal(2);
-        return monitor.info('sqs-mon-test2');
+        return monitor.get('sqs-mon-test2');
       })
       .then(function (info) {
         expect(info.total).to.equal(1);
@@ -84,7 +84,7 @@ describe('SQS monitor', function () {
 
         // Wait for events and redis.
         setTimeout(function () {
-          monitor.info('sqs-mon-test-process')
+          monitor.get('sqs-mon-test-process')
           .then(function (info) {
             expect(info).to.have.property('total', 1);
             expect(info).to.have.property('processed', 1);

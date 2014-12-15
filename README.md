@@ -43,6 +43,68 @@ monitor.info('my-batch').then(function (info) {
 });
 ```
 
+### new Monitor(options)
+
+Create a new monitor with some options.
+
+#### redis
+
+Type: `Object` or `Function`
+
+If you specify an **object**, the properties will be used to call `redis.createClient` method.
+
+```js
+new Monitor({
+  redis: {
+    port: 6379,
+    host: '127.0.0.1',
+    connect_timeout: 200
+  }
+})
+```
+
+If you specify a **function**, it will be called to create redis clients.
+
+```js
+var redis = require('redis');
+
+new Monitor({
+  redis: createClient
+})
+
+function createClient() {
+  var client = redis.createClient();
+  client.select(1); // Choose a custom database.
+  return client;
+}
+```
+
+#### prefix
+
+Custom prefix for redis key. Defaults to "sqsmon".
+
+```js
+new Monitor({prefix: 'custom-prefix'})
+```
+
+### monitor.watch(queue)
+
+Watch a queue in order to update batch in redis. You must watch a queue either you push into the queue or if you pull the queue.
+
+```js
+monitor.watch(queue);
+```
+
+### monitor.get(batchId, [cb])
+
+Get the state of the batch (total, processed and progress). This method supports promises and callback.
+
+```js
+monitor.get('my-batch').then(function (info) {
+  console.log('info'); // {total: 10, processed: 4, progress: 0.4}
+});
+```
+
 ## License
 
 MIT
