@@ -38,13 +38,13 @@ queue.push({batchId: 'my-batch', data: 'my message'});
 queue.push({batchId: 'my-batch', data: 'my second message'});
 
 // Get progression of the batch.
-monitor.info('my-batch').then(function (infos) {
+monitor.info('my-batch').then(function (info) {
   console.log(info); // {progress: 0.4, total: 100, processed: 40}
 });
 
 // Get event when a task is completed.
-monitor.on('message processed', function () {
-
+monitor.on('message processed', function (message) {
+  console.log(message); // message processed
 });
 ```
 
