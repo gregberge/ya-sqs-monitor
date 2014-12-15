@@ -1,0 +1,19 @@
+{
+  "name": "ya-sqs-batch",
+  "version": "0.0.0",
+  "description": "Follow SQS batch processing in redis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neoziro/ya-sqs-batch.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neoziro/ya-sqs-batch/issues"
+  },
+  "homepage": "https://github.com/neoziro/ya-sqs-batch"
+}
