@@ -4,7 +4,7 @@
   "description": "Monitor SQS tasks and batches using redis.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,19 @@
   "bugs": {
     "url": "https://github.com/neoziro/ya-sqs-batch/issues"
   },
-  "homepage": "https://github.com/neoziro/ya-sqs-batch"
+  "homepage": "https://github.com/neoziro/ya-sqs-batch",
+  "peerDependencies": {
+    "ya-sqs": "^2.1.0"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "pipe-event": "^0.1.0",
+    "promise": "^6.0.1",
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1",
+    "ya-sqs": "^2.1.0"
+  }
 }

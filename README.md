@@ -15,7 +15,7 @@ npm install ya-sqs-monitor
 
 ```js
 var sqs = require('ya-sqs');
-var sqsMonitor = require('ya-sqs-monitor');
+var Monitor = require('ya-sqs-monitor');
 
 // Create a basic queue.
 var queue = sqs.createQueue({
@@ -28,7 +28,7 @@ var queue = sqs.createQueue({
 });
 
 // Create a monitor.
-var monitor = sqsMonitor.createClient();
+var monitor = new Monitor(options);
 
 // Monitor queue to to get updates.
 monitor.watch(queue);
@@ -40,11 +40,6 @@ queue.push({batchId: 'my-batch', data: 'my second message'});
 // Get progression of the batch.
 monitor.info('my-batch').then(function (info) {
   console.log(info); // {progress: 0.4, total: 100, processed: 40}
-});
-
-// Get event when a task is completed.
-monitor.on('message processed', function (message) {
-  console.log(message); // message processed
 });
 ```
 
