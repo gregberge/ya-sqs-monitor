@@ -93,7 +93,7 @@ describe('SQS monitor', function () {
             expect(info).to.have.property('progress', 1);
           })
           .nodeify(done);
-        }, 300);
+        }, 800);
       });
     });
   });
