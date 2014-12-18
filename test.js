@@ -6,6 +6,8 @@ var Promise = require('promise');
 describe('SQS monitor', function () {
   var monitor;
 
+  this.timeout(4000);
+
   beforeEach(function () {
     monitor = new Monitor();
   });
