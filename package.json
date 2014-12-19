@@ -1,6 +1,6 @@
 {
   "name": "ya-sqs-monitor",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Monitor SQS tasks and batches using redis.",
   "main": "index.js",
   "scripts": {
