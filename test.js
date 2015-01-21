@@ -48,6 +48,13 @@ describe('SQS monitor', function () {
       });
     });
 
+    it('should watch the queue only one time', function () {
+      monitor.watch(queue);
+      monitor.watch(queue);
+
+      expect(monitor.watchedQueues).to.length(1);
+    });
+
     it('should increment the total count', function () {
       monitor.watch(queue);
 

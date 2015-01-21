@@ -24,6 +24,7 @@ function Monitor(options) {
 
   this.redis = this._createRedisClient(options.redis || {});
   this.prefix = options.prefix || 'sqsmon';
+  this.watchedQueues = [];
 
   pipeEvent('error', this.redis, this);
 }
@@ -38,6 +39,10 @@ util.inherits(Monitor, EventEmitter);
 
 Monitor.prototype.watch = function (queue) {
   var monitor = this;
+
+  if (_.contains(this.watchedQueues, queue)) return;
+
+  this.watchedQueues.push(queue);
 
   queue.on('message pushed', monitor._processMessage.bind(monitor, 'total'));
   queue.on('message processed', function (message) {
